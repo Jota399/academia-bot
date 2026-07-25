@@ -1,0 +1,38 @@
+name: Briefing diario
+
+on:
+  schedule:
+    - cron: '0 13 * * 1-5' # 7am CDMX (UTC-6), lunes a viernes
+  workflow_dispatch: {}
+
+jobs:
+  briefing:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Genera el briefing con Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            Eres el analista del bot de WhatsApp de Jonathan (academia-bot, ver CLAUDE.md).
+            Revisa el estado del repo (prompts/, CLAUDE.md, bot.log si existe) y
+            escribe un briefing diario en briefing.md con:
+            - Fecha y hora del briefing
+            - Qué tan al día está la config del bot (personas, few-shot, reglas)
+            - Cualquier pendiente detectado (archivos desactualizados, TODOs, errores en bot.log)
+            - Recordatorio de las reglas permanentes: nunca prometer precio, fecha o
+              descuento sin aprobación de Jonathan, y ningún mensaje sale sin su revisión.
+            Sé breve, directo y en tono cercano.
+
+      - name: Commit y push del briefing
+        run: |
+          git config user.name "academia-bot"
+          git config user.email "bot@academia-bot.local"
+          git add briefing.md
+          git diff --staged --quiet || git commit -m "briefing: actualización automática $(date -u +%Y-%m-%d)"
+          git push
