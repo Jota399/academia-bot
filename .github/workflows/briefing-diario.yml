@@ -28,7 +28,12 @@ jobs:
             descuento sin aprobación de Jonathan, y ningún mensaje sale sin su revisión.
           Sé breve, directo y en tono cercano. Responde solo con el contenido del briefing en markdown.'
 
-          CONTEXT=$(find prompts CLAUDE.md bot.log -type f 2>/dev/null -exec sh -c 'echo "--- $1 ---"; cat "$1"' _ {} \;)
+          CONTEXT=$(find prompts CLAUDE.md -type f -exec sh -c 'echo "--- $1 ---"; cat "$1"' _ {} \;)
+          if [ -f bot.log ]; then
+            CONTEXT="$CONTEXT
+          --- bot.log ---
+          $(cat bot.log)"
+          fi
 
           BODY=$(jq -n --arg sys "$SYSTEM_PROMPT" --arg ctx "$CONTEXT" '{
             model: "moonshotai/kimi-k2",
