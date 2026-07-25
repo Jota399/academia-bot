@@ -14,20 +14,36 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Genera el briefing con Claude Code
-        uses: anthropics/claude-code-action@v1
-        with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          prompt: |
-            Eres el analista del bot de WhatsApp de Jonathan (academia-bot, ver CLAUDE.md).
-            Revisa el estado del repo (prompts/, CLAUDE.md, bot.log si existe) y
-            escribe un briefing diario en briefing.md con:
-            - Fecha y hora del briefing
-            - Qué tan al día está la config del bot (personas, few-shot, reglas)
-            - Cualquier pendiente detectado (archivos desactualizados, TODOs, errores en bot.log)
-            - Recordatorio de las reglas permanentes: nunca prometer precio, fecha o
-              descuento sin aprobación de Jonathan, y ningún mensaje sale sin su revisión.
-            Sé breve, directo y en tono cercano.
+      - name: Genera el briefing con Kimi (OpenRouter)
+        env:
+          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+        run: |
+          SYSTEM_PROMPT='Eres el analista del bot de WhatsApp de Jonathan (academia-bot, ver CLAUDE.md).
+          Revisa el estado del repo que te paso (prompts/, CLAUDE.md, bot.log si existe) y
+          escribe un briefing diario con:
+          - Fecha y hora del briefing
+          - Qué tan al día está la config del bot (personas, few-shot, reglas)
+          - Cualquier pendiente detectado (archivos desactualizados, TODOs, errores en bot.log)
+          - Recordatorio de las reglas permanentes: nunca prometer precio, fecha o
+            descuento sin aprobación de Jonathan, y ningún mensaje sale sin su revisión.
+          Sé breve, directo y en tono cercano. Responde solo con el contenido del briefing en markdown.'
+
+          CONTEXT=$(find prompts CLAUDE.md bot.log -type f 2>/dev/null -exec sh -c 'echo "--- $1 ---"; cat "$1"' _ {} \;)
+
+          BODY=$(jq -n --arg sys "$SYSTEM_PROMPT" --arg ctx "$CONTEXT" '{
+            model: "moonshotai/kimi-k2",
+            messages: [
+              {role: "system", content: $sys},
+              {role: "user", content: $ctx}
+            ]
+          }')
+
+          curl -s https://openrouter.ai/api/v1/chat/completions \
+            -H "Authorization: Bearer $KIMI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "$BODY" | jq -r '.choices[0].message.content' > briefing.md
+
+          cat briefing.md
 
       - name: Commit y push del briefing
         run: |
