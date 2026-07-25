@@ -37,6 +37,7 @@ jobs:
 
           BODY=$(jq -n --arg sys "$SYSTEM_PROMPT" --arg ctx "$CONTEXT" '{
             model: "moonshotai/kimi-k2",
+            max_tokens: 800,
             messages: [
               {role: "system", content: $sys},
               {role: "user", content: $ctx}
