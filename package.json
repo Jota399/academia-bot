@@ -21,5 +21,8 @@
   },
   "allowScripts": {
     "puppeteer@24.38.0": true
+  },
+  "devDependencies": {
+    "supabase": "^2.109.1"
   }
 }
