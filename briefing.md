@@ -1,51 +1,25 @@
-# 📋 Briefing Diario — academia-bot
+```markdown
+## Briefing Diario - academia-bot (2026-07-25)
 
-**Fecha:** 2024-01-09 | **Hora:** ~10:30 AM
+### Cambios Recientes
+- **Migración de modelo**: El briefing automático cambió de Claude Code a **Kimi** vía OpenRouter (tier gratuito)
+- **Fix de tokens**: Se limitó `max_tokens` para evitar errores de rate limit en OpenRouter
+- **Robustez**: Ahora el briefing no falla si `bot.log` no existe (archivo gitignored)
+- **Documentación**: Se identificó tarea manual pendiente de automatizar — gestión de pedidos vía WhatsApp + Bloc de notas
 
----
+### Estado del Bot
+- Servicio: WhatsApp Bot (Baileys)
+- IA: Kimi/OpenRouter (gratuito)
+- Workflow: Briefing diario automatizado por cron
+- Pendiente: Bot de gestión de pedidos
 
-## Estado de la configuración
-
-| Componente | Estado | Notas |
-|------------|--------|-------|
-| `prompts/asistente.md` | ✅ Al día | Reglas de aprobación claras, tono definido |
-| `prompts/redactor.md` | ✅ Al día | Diferenciación WhatsApp/correo, marca de borrador |
-| `prompts/analista.md` | ✅ Al día | Framework de análisis operativo completo |
-| `prompts/ejemplos-few-shot.md` | ✅ Al día | 4 ejemplos sólidos, patrones de voz bien documentados |
-| `CLAUDE.md` | ✅ Al día | Estructura del proyecto y reglas de seguridad actualizadas |
-
-**Veredicto:** Config al día. Todas las personas están sincronizadas con las reglas permanentes.
-
----
-
-## Pendientes detectados
-
-**🟡 Archivo no encontrado:** `bot.log` — No hay logs para revisar errores recientes. Si el bot está corriendo en producción, verificar que el logging esté activo en `index.js` o `src/`.
-
-**🟡 No hay `.gitignore` visible en el briefing:** Aunque `CLAUDE.md` lista qué no commitear, confirmar que `.gitignore` existe y cubre:
-- `.env`
-- `.wwebjs_auth/`
-- `.wwebjs_cache/`
-- `node_modules/`
-- `bot.log`
+### Pendientes Detectados
+1. **Alta prioridad**: Automatizar gestión de pedidos (actualmente manual en WhatsApp + Bloc de notas)
+2. Revisar si el cambio a Kimi mantiene calidad de conversaciones del bot principal
 
 ---
 
-## Recordatorios de seguridad (siempre vigentes)
-
-> 🔒 **Nunca** prometer precio, fecha o descuento sin aprobación de Jonathan.
-> 
-> 👁️ **Ningún mensaje** sale por WhatsApp sin su revisión previa.
->
-> 📝 Todo output debe marcarse como borrador o pendiente de aprobación cuando aplique.
-
----
-
-## Acción sugerida para hoy
-
-1. Verificar existencia de `.gitignore` y que `bot.log` esté siendo generado (aunque no commiteado).
-2. Si hay instancia corriendo, pedir `tail -20 bot.log` para revisar salud operativa.
-
----
-
-*Briefing generado. ¿Necesitas que profundice en algo?*
+### ⚠️ Reglas Permanentes (no negociables)
+- **NUNCA** prometer precios, fechas o descuentos sin aprobación explícita de Jonathan
+- **NINGÚN** mensaje de ventas/publicidad sale sin su revisión previa
+```
