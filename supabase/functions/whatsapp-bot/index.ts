@@ -140,7 +140,13 @@ Deno.serve(async (req: Request) => {
     return new Response("Solo POST", { status: 405 });
   }
 
-  const form = await req.formData();
+  let form: FormData;
+  try {
+    form = await req.formData();
+  } catch {
+    // Ping/health-check sin body form-encoded (no es un webhook real de Twilio).
+    return new Response("OK", { status: 200 });
+  }
   const from = String(form.get("From") ?? "desconocido"); // ej. whatsapp:+50760025284
   const body = String(form.get("Body") ?? "").trim();
 
