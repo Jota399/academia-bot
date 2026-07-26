@@ -1,0 +1,25 @@
+name: Mem0 nightly extractor
+
+on:
+  schedule:
+    - cron: '0 9 * * *' # 3am CDMX (UTC-6), todas las noches
+  workflow_dispatch: {}
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 20
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Corre el extractor multi-fuente hacia Mem0
+        env:
+          MEM0_API_KEY: ${{ secrets.MEM0_API_KEY }}
+        run: bash scripts/mem0-extractor.sh

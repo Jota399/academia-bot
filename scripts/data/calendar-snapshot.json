@@ -1,0 +1,20 @@
+{
+  "_nota": "PLACEHOLDER — reemplaza estos eventos con tus citas reales apenas tengas clientas agendadas. El extractor lee este archivo tal cual, no distingue ejemplo de real.",
+  "eventos": [
+    {
+      "titulo": "Llamada de descubrimiento con Panadería Doña Rosa",
+      "fecha": "2026-07-29T15:00:00-05:00",
+      "notas": "Primera llamada — quieren saber si un bot de WhatsApp les sirve para tomar pedidos y avisar promociones."
+    },
+    {
+      "titulo": "Seguimiento con Consultorio Dental Sonrisas",
+      "fecha": "2026-07-31T10:00:00-05:00",
+      "notas": "Ya vieron la demo, pendiente decidir si arrancan el plan básico."
+    },
+    {
+      "titulo": "Bloque de trabajo: preparar propuesta para Ferretería El Tornillo",
+      "fecha": "2026-08-03T09:00:00-05:00",
+      "notas": "Pidieron cotización para automatizar seguimiento de cotizaciones pendientes."
+    }
+  ]
+}

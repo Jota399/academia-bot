@@ -1,0 +1,23 @@
+{
+  "_nota": "PLACEHOLDER — reemplaza estos correos con hilos reales de clientas apenas los tengas. El extractor lee este archivo tal cual, no distingue ejemplo de real.",
+  "correos": [
+    {
+      "de": "rosa@panaderiadonarosa.com",
+      "asunto": "Pregunta sobre precio del bot de WhatsApp",
+      "fecha": "2026-07-24T11:20:00-05:00",
+      "resumen": "Pregunta cuánto cuesta el plan mensual y si incluye soporte. Pendiente de respuesta — Jonathan debe aprobar precio antes de contestar."
+    },
+    {
+      "de": "carlos@ferreteriaeltornillo.com",
+      "asunto": "Cotización automatización de seguimiento",
+      "fecha": "2026-07-25T09:05:00-05:00",
+      "resumen": "Pide ejemplo de cómo se vería un mensaje de seguimiento automático a clientes con cotización pendiente."
+    },
+    {
+      "de": "sonrisas.dental@gmail.com",
+      "asunto": "Re: Demo de seguimiento de pacientes",
+      "fecha": "2026-07-25T16:40:00-05:00",
+      "resumen": "Les gustó la demo, preguntan por tiempo de implementación antes de decidir."
+    }
+  ]
+}
