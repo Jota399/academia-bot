@@ -1,6 +1,5 @@
 // Setup type definitions for built-in Supabase Runtime APIs
 import "@supabase/functions-js/edge-runtime.d.ts";
-import { withSupabase } from "@supabase/server";
 
 const TOOLS = [
   {
@@ -95,7 +94,7 @@ async function callTool(name: string, args: Record<string, unknown>) {
 }
 
 export default {
-  fetch: withSupabase({ auth: ["publishable", "secret"] }, async (req) => {
+  fetch: async (req: Request) => {
     const body = req.method === "POST" ? await req.json().catch(() => ({})) : {};
     const { method, params, id } = body;
 
@@ -146,5 +145,5 @@ export default {
       id: id ?? null,
       error: { code: -32601, message: `Método no soportado: ${method}` },
     });
-  }),
+  },
 };
