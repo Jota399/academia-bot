@@ -1,22 +1,21 @@
-## 📋 Briefing Diario - 2026-07-26
+## Briefing Diario — academia-bot
 
-### Cambios recientes
-- **Agente de cron (S04)**: Ahora usa MCP de GitHub real (list_commits, get_file_contents, create_pull_request) y **abre PR en lugar de push directo**
-- **Fix**: Límite de `max_tokens` ajustado para tier gratuito de OpenRouter
-- **Fix**: El briefing ya no falla si `bot.log` no existe (está en `.gitignore`)
-- **Documentación**: Pendiente anotado — automatizar gestión de pedidos vía WhatsApp + Bloc de notas
+### Cambios Recientes
+- **S04-S08 completados**: El bot evolucionó de MCP de prueba a sistema funcional
+- **MCP real desplegado**: 3 tools operativas (`buscar_cliente`, `ultimos_commits`, `estado_bot`) sin requisito de apiKey
+- **Edge function whatsapp-bot**: Integración Groq + Mem0 + handoff operativa
+- **Mem0 activo**: Extractor multi-fuente (commits, calendario, Gmail) con cron nocturno + 5 queries semánticas documentadas
+- **Demo lista**: Video de 8 min subido, bug de health-check corregido
 
-### Estado de la config
-- Proveedor de LLM: **Kimi vía OpenRouter** (migrado desde Claude Code)
-- Workflow `briefing-diario`: Activo en cron con agente autónomo
-- Proceso: Agente → PR → revisión manual (ya no push directo)
+### Estado de Config
+- **Supabase**: Edge functions `mi-herramienta` y `whatsapp-bot` desplegadas
+- **Mem0**: Pipeline de extracción y búsqueda semántica funcionando
+- **Handoff**: Sistema de escalamiento a Jonathan implementado
 
-### Pendientes detectados
-1. **Automatizar gestión de pedidos WhatsApp + Bloc de notas** — marcado como tarea manual pendiente
-2. Revisar PRs del agente de cron antes de merge
+### Pendientes Detectados
+- **CRÍTICO**: `CLAUDE.md` y `prompts/asistente.md` están corruptos (encoding dañado). Requieren restauración urgente — el bot opera sin instrucciones de sistema legibles.
+- Verificar que el cron nocturno de Mem0 esté activo en producción
+- Confirmar que el handoff notifique correctamente a Jonathan (canal definido)
 
----
-
-### 🚨 Reglas permanentes (recordatorio)
-- **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
-- **Ningún mensaje** sale sin su revisión personal
+### Reglas Permanentes — Vigentes
+> **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan. **Ningún mensaje** sale sin su revisión.
