@@ -1,22 +1,33 @@
-## 📋 Briefing Diario - 2026-07-26
+# Briefing Diario — academia-bot
 
-### Cambios recientes
-- **Agente de cron (S04)**: Ahora usa MCP de GitHub real (list_commits, get_file_contents, create_pull_request) y **abre PR en lugar de push directo**
-- **Fix**: Límite de `max_tokens` ajustado para tier gratuito de OpenRouter
-- **Fix**: El briefing ya no falla si `bot.log` no existe (está en `.gitignore`)
-- **Documentación**: Pendiente anotado — automatizar gestión de pedidos vía WhatsApp + Bloc de notas
+## Cambios Recientes (últimos commits)
 
-### Estado de la config
-- Proveedor de LLM: **Kimi vía OpenRouter** (migrado desde Claude Code)
-- Workflow `briefing-diario`: Activo en cron con agente autónomo
-- Proceso: Agente → PR → revisión manual (ya no push directo)
+| Commit | Cambio |
+|--------|--------|
+| `b1e15f1` | **S04**: MCP `mi-herramienta` ya no requiere `apiKey` — el examen llama `tools/list` sin credenciales |
+| `8450606` | **S04**: `mi-herramienta` convertido en MCP real con 3 tools: `buscar_cliente`, `ultimos_commits`, `estado_bot` |
+| `f03b118` | **S08**: Demo video (8 min) linkeado en `DEMO.md` |
+| `393ff5e` | **S08**: Fix bug ping/health-check en `whatsapp-bot`, docs `memory/log.md` y `DEMO.md` listos |
+| `d120b76` | **S06**: Edge function `whatsapp-bot` operativa (Groq + Mem0 + handoff), items 1/2/3/6/7 |
+| `cf73449` | **S05**: Extractor multi-fuente (commits, calendario, gmail) → Mem0 + cron nocturno |
+| `33329fd` | **S05**: 5 queries semánticas de Mem0 documentadas y probadas |
 
-### Pendientes detectados
-1. **Automatizar gestión de pedidos WhatsApp + Bloc de notas** — marcado como tarea manual pendiente
-2. Revisar PRs del agente de cron antes de merge
+## Estado del Bot
+
+- ✅ **Core operativo**: Edge function `whatsapp-bot` con Groq + Mem0 + handoff
+- ✅ **MCP funcional**: 3 tools disponibles sin autenticación para el examen
+- ✅ **Memoria**: Extractor multi-fuente + queries semánticas funcionando
+- ✅ **Demo**: Video de 8 min listo, docs actualizados
+
+## Pendientes Detectados
+
+- **CLAUDE.md y prompts/asistente.md**: Archivos corruptos/garbled — requieren restauración urgente
+- Verificar que el cron nocturno del extractor esté activo en producción
+- Confirmar que el health-check fix (`393ff5e`) está deployado en el edge function activo
 
 ---
 
-### 🚨 Reglas permanentes (recordatorio)
-- **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
-- **Ningún mensaje** sale sin su revisión personal
+## ⚠️ Reglas Permanentes — OBLIGATORIAS
+
+> **NUNCA** prometer precio, fecha o descuento sin aprobación explícita de Jonathan.
+> **NINGÚN** mensaje sale sin su revisión previa.
