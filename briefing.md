@@ -1,22 +1,29 @@
-## 📋 Briefing Diario - 2026-07-26
+# Briefing Diario — Academia-Bot
 
-### Cambios recientes
-- **Agente de cron (S04)**: Ahora usa MCP de GitHub real (list_commits, get_file_contents, create_pull_request) y **abre PR en lugar de push directo**
-- **Fix**: Límite de `max_tokens` ajustado para tier gratuito de OpenRouter
-- **Fix**: El briefing ya no falla si `bot.log` no existe (está en `.gitignore`)
-- **Documentación**: Pendiente anotado — automatizar gestión de pedidos vía WhatsApp + Bloc de notas
+## Cambios Recientes (últimos commits)
 
-### Estado de la config
-- Proveedor de LLM: **Kimi vía OpenRouter** (migrado desde Claude Code)
-- Workflow `briefing-diario`: Activo en cron con agente autónomo
-- Proceso: Agente → PR → revisión manual (ya no push directo)
+- **S04 MCP completo**: `mi-herramienta` ahora es un MCP real con 3 tools (`buscar_cliente`, `ultimos_commits`, `estado_bot`). Ya no requiere apiKey — el examen llama `tools/list` sin credenciales.
+- **S08 Demo finalizada**: video de 8 min agregado a `DEMO.md`, bug de ping/health-check corregido en `whatsapp-bot`.
+- **S06 Edge function `whatsapp-bot`**: operativo con Groq + Mem0 + handoff (items 1/2/3/6/7).
+- **S05 Mem0 activo**: extractor multi-fuente (commits, calendario, gmail) con cron nocturno; 5 queries semánticas documentadas y probadas.
 
-### Pendientes detectados
-1. **Automatizar gestión de pedidos WhatsApp + Bloc de notas** — marcado como tarea manual pendiente
-2. Revisar PRs del agente de cron antes de merge
+## Estado de Configuración
+
+| Componente | Estado |
+|------------|--------|
+| MCP `mi-herramienta` | ✅ Producción (Supabase) |
+| Edge `whatsapp-bot` | ✅ Operativo (Groq + Mem0) |
+| Mem0 + cron nocturno | ✅ Activo |
+| Health-check | ✅ Fix aplicado |
+| Demo video | ✅ 8 min en DEMO.md |
+
+## Pendientes Detectados
+
+- Ninguno crítico visible en commits recientes.
 
 ---
 
-### 🚨 Reglas permanentes (recordatorio)
-- **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
-- **Ningún mensaje** sale sin su revisión personal
+## ⚠️ Reglas Permanentes (recordatorio)
+
+1. **Nunca prometer precio, fecha o descuento** sin aprobación explícita de Jonathan.
+2. **Ningún mensaje sale sin su revisión** — todo copy debe ser aprobado.
