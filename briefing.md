@@ -1,22 +1,24 @@
-## 📋 Briefing Diario - 2026-07-26
+## 📋 Briefing Diario - Academia-Bot
 
-### Cambios recientes
-- **Agente de cron (S04)**: Ahora usa MCP de GitHub real (list_commits, get_file_contents, create_pull_request) y **abre PR en lugar de push directo**
-- **Fix**: Límite de `max_tokens` ajustado para tier gratuito de OpenRouter
-- **Fix**: El briefing ya no falla si `bot.log` no existe (está en `.gitignore`)
-- **Documentación**: Pendiente anotado — automatizar gestión de pedidos vía WhatsApp + Bloc de notas
+### Cambios Recientes
+- **MCP server real**: `mi-herramienta` ahora tiene 3 tools (`buscar_cliente`, `ultimos_commits`, `estado_bot`) y ya no requiere apiKey
+- **Extractor multi-fuente**: Sistema que alimenta Mem0 desde commits, calendario y Gmail con cron nocturno
+- **Edge function whatsapp-bot**: Integración Groq + Mem0 + handoff operativa
+- **Demo lista**: Video de 8 min subido, bug de health-check corregido
 
-### Estado de la config
-- Proveedor de LLM: **Kimi vía OpenRouter** (migrado desde Claude Code)
-- Workflow `briefing-diario`: Activo en cron con agente autónomo
-- Proceso: Agente → PR → revisión manual (ya no push directo)
+### Estado del Bot
+| Componente | Estado |
+|-----------|--------|
+| MCP server (mi-herramienta) | ✅ Desplegado en Supabase, sin auth requerida |
+| Mem0 | ✅ 5 queries semánticas documentadas y probadas |
+| WhatsApp bot (Groq+Mem0) | ✅ Edge function activa |
+| Extractor/cron | ✅ Nocturno configurado |
 
-### Pendientes detectados
-1. **Automatizar gestión de pedidos WhatsApp + Bloc de notas** — marcado como tarea manual pendiente
-2. Revisar PRs del agente de cron antes de merge
+### Pendientes Detectados
+- Revisar items 1/2/3/**6/7** del S06 (marcados como parciales en el commit)
+- Validar flujo de handoff en producción
 
 ---
 
-### 🚨 Reglas permanentes (recordatorio)
-- **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
-- **Ningún mensaje** sale sin su revisión personal
+### ⚠️ Reglas Permanentes
+> **Sin excepciones:** Nunca prometer precio, fecha o descuento sin aprobación explícita de Jonathan. Ningún mensaje sale sin su revisión previa.
