@@ -1,22 +1,22 @@
-## 📋 Briefing Diario - 2026-07-26
+## Briefing Diario — academia-bot
 
-### Cambios recientes
-- **Agente de cron (S04)**: Ahora usa MCP de GitHub real (list_commits, get_file_contents, create_pull_request) y **abre PR en lugar de push directo**
-- **Fix**: Límite de `max_tokens` ajustado para tier gratuito de OpenRouter
-- **Fix**: El briefing ya no falla si `bot.log` no existe (está en `.gitignore`)
-- **Documentación**: Pendiente anotado — automatizar gestión de pedidos vía WhatsApp + Bloc de notas
+### Cambios recientes (últimos commits)
+- **S04**: La herramienta `mi-herramienta` se convirtió en un MCP real con 3 tools (`buscar_cliente`, `ultimos_commits`, `estado_bot`) y ya no requiere `apiKey` para el endpoint `tools/list`
+- **S08**: Demo finalizada — video de 8 min agregado a `DEMO.md`, bug de ping/health-check corregido en `whatsapp-bot`
+- **S06**: Edge function `whatsapp-bot` operativa (Groq + Mem0 + handoff), items 1/2/3/6/7 completados
+- **S05**: Extractor multi-fuente (commits, calendario, Gmail) → Mem0 con cron nocturno; 5 queries semánticas documentadas y probadas
 
 ### Estado de la config
-- Proveedor de LLM: **Kimi vía OpenRouter** (migrado desde Claude Code)
-- Workflow `briefing-diario`: Activo en cron con agente autónomo
-- Proceso: Agente → PR → revisión manual (ya no push directo)
+- MCP desplegado en Supabase, operativo sin autenticación para listado de tools
+- Mem0 activo con ingestión nocturna y queries semánticas validadas
+- Handoff a humano implementado en el flujo del bot
 
 ### Pendientes detectados
-1. **Automatizar gestión de pedidos WhatsApp + Bloc de notas** — marcado como tarea manual pendiente
-2. Revisar PRs del agente de cron antes de merge
+- Verificar que el cron nocturno del extractor esté corriendo sin errores de rate-limit en Gmail/Calendar
+- Confirmar que `whatsapp-bot` mantiene contexto Mem0 entre sesiones de usuario
 
 ---
 
-### 🚨 Reglas permanentes (recordatorio)
-- **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
-- **Ningún mensaje** sale sin su revisión personal
+**Reglas permanentes** (aplicables a cualquier interacción):
+- ⛔ **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
+- ⛔ **Ningún mensaje** sale sin su revisión previa
