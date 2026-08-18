@@ -1,22 +1,24 @@
-## 📋 Briefing Diario - 2026-07-26
+## Briefing Diario - academia-bot
 
-### Cambios recientes
-- **Agente de cron (S04)**: Ahora usa MCP de GitHub real (list_commits, get_file_contents, create_pull_request) y **abre PR en lugar de push directo**
-- **Fix**: Límite de `max_tokens` ajustado para tier gratuito de OpenRouter
-- **Fix**: El briefing ya no falla si `bot.log` no existe (está en `.gitignore`)
-- **Documentación**: Pendiente anotado — automatizar gestión de pedidos vía WhatsApp + Bloc de notas
+### Cambios Recientes
+- **MCP real desplegado**: `mi-herramienta` ahora es un MCP funcional en Supabase con 3 tools (`buscar_cliente`, `ultimos_commits`, `estado_bot`) — ya no requiere apiKey para el examen
+- **Extractor multi-fuente operativo**: Commits, calendario y Gmail → Mem0, con cron nocturno
+- **WhatsApp-bot estable**: Fix de ping/health-check aplicado, edge function con Groq + Mem0 + handoff funcionando
+- **Demo documentada**: Video de 8 minutos linkeado en DEMO.md
 
-### Estado de la config
-- Proveedor de LLM: **Kimi vía OpenRouter** (migrado desde Claude Code)
-- Workflow `briefing-diario`: Activo en cron con agente autónomo
-- Proceso: Agente → PR → revisión manual (ya no push directo)
+### Estado de Config
+- Edge function `whatsapp-bot`: ✅ Activa (Groq + Mem0 + handoff)
+- Edge function `mi-herramienta` (MCP): ✅ Desplegada en Supabase
+- Mem0: ✅ 5 queries semánticas documentadas y probadas
+- Cron nocturno: ✅ Configurado para ingesta multi-fuente
 
-### Pendientes detectados
-1. **Automatizar gestión de pedidos WhatsApp + Bloc de notas** — marcado como tarea manual pendiente
-2. Revisar PRs del agente de cron antes de merge
+### Pendientes Detectados
+- **Archivo CLAUDE.md corrupto**: Contenido ilegible (encoding dañado o binario) — requiere restauración urgente
+- **Prompt de asistente corrupto**: `prompts/asistente.md` también con encoding dañado
+- Verificar integridad del resto de prompts/documentación tras el merge
 
 ---
 
-### 🚨 Reglas permanentes (recordatorio)
+### ⛔ Reglas Permanentes
 - **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
-- **Ningún mensaje** sale sin su revisión personal
+- **Ningún mensaje** sale sin revisión de Jonathan
