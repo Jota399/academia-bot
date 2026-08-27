@@ -1,22 +1,34 @@
-## 📋 Briefing Diario - 2026-07-26
+# Briefing Diario - Academia-Bot
 
-### Cambios recientes
-- **Agente de cron (S04)**: Ahora usa MCP de GitHub real (list_commits, get_file_contents, create_pull_request) y **abre PR en lugar de push directo**
-- **Fix**: Límite de `max_tokens` ajustado para tier gratuito de OpenRouter
-- **Fix**: El briefing ya no falla si `bot.log` no existe (está en `.gitignore`)
-- **Documentación**: Pendiente anotado — automatizar gestión de pedidos vía WhatsApp + Bloc de notas
+## Cambios Recientes (últimos commits)
 
-### Estado de la config
-- Proveedor de LLM: **Kimi vía OpenRouter** (migrado desde Claude Code)
-- Workflow `briefing-diario`: Activo en cron con agente autónomo
-- Proceso: Agente → PR → revisión manual (ya no push directo)
+- **S04-S08 completados**: Pipeline de datos + infraestructura lista
+  - MCP real desplegado con 3 tools: `buscar_cliente`, `ultimos_commits`, `estado_bot`
+  - Edge function `whatsapp-bot` operativa (Groq + Mem0 + handoff)
+  - Extractor multi-fuente funcionando (commits, calendario, gmail) → Mem0 + cron nocturno
+  - 5 queries semánticas de Mem0 documentadas y probadas
+  - Bug de ping/health-check corregido
+  - Video demo de 8 min agregado a DEMO.md
 
-### Pendientes detectados
-1. **Automatizar gestión de pedidos WhatsApp + Bloc de notas** — marcado como tarea manual pendiente
-2. Revisar PRs del agente de cron antes de merge
+## Estado de Config
+
+| Componente | Estado |
+|------------|--------|
+| MCP `mi-herramienta` | ✅ Activo (sin apiKey requerida para tools/list) |
+| Edge function whatsapp-bot | ✅ Desplegada |
+| Mem0 | ✅ Integrado con queries semánticas |
+| Cron nocturno | ✅ Configurado |
+| Health-check | ✅ Funcionando |
+
+## Pendientes Detectados
+
+- **S06 items 4 y 5**: Pendientes del edge function (solo 1/2/3/6/7 completados)
+- **CLAUDE.md corrupto**: Archivo con encoding dañado, requiere regeneración
+- **prompts/asistente.md corrupto**: Mismo problema de encoding
 
 ---
 
-### 🚨 Reglas permanentes (recordatorio)
-- **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
-- **Ningún mensaje** sale sin su revisión personal
+## ⚠️ Reglas Permanentes (recordatorio)
+
+1. **Nunca prometer precio, fecha o descuento** sin aprobación explícita de Jonathan
+2. **Ningún mensaje sale sin revisión** de Jonathan
