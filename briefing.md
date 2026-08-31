@@ -1,22 +1,34 @@
-## 📋 Briefing Diario - 2026-07-26
+# Briefing Diario — Academia-Bot
 
-### Cambios recientes
-- **Agente de cron (S04)**: Ahora usa MCP de GitHub real (list_commits, get_file_contents, create_pull_request) y **abre PR en lugar de push directo**
-- **Fix**: Límite de `max_tokens` ajustado para tier gratuito de OpenRouter
-- **Fix**: El briefing ya no falla si `bot.log` no existe (está en `.gitignore`)
-- **Documentación**: Pendiente anotado — automatizar gestión de pedidos vía WhatsApp + Bloc de notas
+## Cambios Recientes
 
-### Estado de la config
-- Proveedor de LLM: **Kimi vía OpenRouter** (migrado desde Claude Code)
-- Workflow `briefing-diario`: Activo en cron con agente autónomo
-- Proceso: Agente → PR → revisión manual (ya no push directo)
+| Commit | Cambio |
+|--------|--------|
+| `b1e15f1` | MCP sin apiKey: el examen ahora llama `tools/list` sin credenciales |
+| `8450606` | `mi-herramienta` → MCP real con 3 tools: `buscar_cliente`, `ultimos_commits`, `estado_bot` |
+| `f03b118` | Demo: video de 8 min añadido a `DEMO.md` |
+| `393ff5e` | Fix bug ping/health-check en whatsapp-bot; docs listos para demo final |
+| `d120b76` | Edge function `whatsapp-bot` lista: Groq + Mem0 + handoff (items 1/2/3/6/7) |
+| `cf73449` | Extractor multi-fuente (commits/calendario/gmail) → Mem0 + cron nocturno |
+| `bf20250` | Deploy de `mi-herramienta` en Supabase |
 
-### Pendientes detectados
-1. **Automatizar gestión de pedidos WhatsApp + Bloc de notas** — marcado como tarea manual pendiente
-2. Revisar PRs del agente de cron antes de merge
+## Estado de Config
+
+- **CLAUDE.md**: ❌ **Corrupto** (encoding dañado, necesita restauración)
+- **prompts/asistente.md**: ❌ **Corrupto** (mismo problema de encoding)
+- **MCP**: ✅ Operativo, sin apiKey requerida
+- **Mem0**: ✅ Integrado con 5 queries semánticas documentadas
+- **WhatsApp bot**: ✅ Edge function deployada, health-check arreglado
+
+## Pendientes Detectados
+
+1. **URGENTE**: Restaurar `CLAUDE.md` y `prompts/asistente.md` — el encoding está roto
+2. Verificar que el cron nocturno del extractor esté activo en producción
+3. Confirmar que `buscar_cliente` tiene acceso real a la base de datos de clientes
 
 ---
 
-### 🚨 Reglas permanentes (recordatorio)
+## ⚠️ Reglas Permanentes
+
 - **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
-- **Ningún mensaje** sale sin su revisión personal
+- **Ningún mensaje** sale sin su revisión previa
