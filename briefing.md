@@ -1,22 +1,40 @@
-## 📋 Briefing Diario - 2026-07-26
+## 📋 Briefing Diario — academia-bot
 
-### Cambios recientes
-- **Agente de cron (S04)**: Ahora usa MCP de GitHub real (list_commits, get_file_contents, create_pull_request) y **abre PR en lugar de push directo**
-- **Fix**: Límite de `max_tokens` ajustado para tier gratuito de OpenRouter
-- **Fix**: El briefing ya no falla si `bot.log` no existe (está en `.gitignore`)
-- **Documentación**: Pendiente anotado — automatizar gestión de pedidos vía WhatsApp + Bloc de notas
+### Cambios Recientes (últimos commits)
 
-### Estado de la config
-- Proveedor de LLM: **Kimi vía OpenRouter** (migrado desde Claude Code)
-- Workflow `briefing-diario`: Activo en cron con agente autónomo
-- Proceso: Agente → PR → revisión manual (ya no push directo)
-
-### Pendientes detectados
-1. **Automatizar gestión de pedidos WhatsApp + Bloc de notas** — marcado como tarea manual pendiente
-2. Revisar PRs del agente de cron antes de merge
+| Commit | Cambio |
+|--------|--------|
+| `b1e15f1` | **MCP sin auth**: el examen ahora llama `tools/list` sin necesitar apiKey |
+| `8450606` | **MCP real operativo**: 3 tools disponibles (`buscar_cliente`, `ultimos_commits`, `estado_bot`) |
+| `f03b118` | Demo documentada: link de video de 8 min en `DEMO.md` |
+| `393ff5e` | Fix crítico: bug de ping/health-check en whatsapp-bot |
+| `d120b76` | **S06 completo**: edge function whatsapp-bot con Groq + Mem0 + handoff |
+| `cf73449` | Extractor multi-fuente (commits, calendario, gmail) → Mem0 + cron nocturno |
+| `33329fd` | 5 queries semánticas de Mem0 documentadas y probadas |
 
 ---
 
-### 🚨 Reglas permanentes (recordatorio)
-- **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
-- **Ningún mensaje** sale sin su revisión personal
+### Estado de Config
+
+| Componente | Estado |
+|------------|--------|
+| WhatsApp Bot (Groq + Mem0 + handoff) | ✅ Operativo |
+| MCP (`mi-herramienta`) | ✅ Desplegado en Supabase, 3 tools activas |
+| Mem0 | ✅ Con 5 queries semánticas + extractor multi-fuente |
+| Health-check/ping | ✅ Fix aplicado |
+| Cron nocturno | ✅ Activo |
+
+---
+
+### Pendientes Detectados
+
+- **CLAUDE.md y prompts/asistente.md**: archivos corruptos/garbage data — requieren restauración urgente
+- Sin acceso a prompts de sistema actualizados del asistente
+
+---
+
+### ⚠️ Reglas Permanentes — Aplican Siempre
+
+1. **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
+2. **Ningún** mensaje sale sin revisión de Jonathan
+3. Handoff automático activo: cualquier tema sensible → escalación humana
