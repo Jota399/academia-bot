@@ -1,22 +1,34 @@
-## 📋 Briefing Diario - 2026-07-26
+# Briefing Diario — Academia-Bot
 
-### Cambios recientes
-- **Agente de cron (S04)**: Ahora usa MCP de GitHub real (list_commits, get_file_contents, create_pull_request) y **abre PR en lugar de push directo**
-- **Fix**: Límite de `max_tokens` ajustado para tier gratuito de OpenRouter
-- **Fix**: El briefing ya no falla si `bot.log` no existe (está en `.gitignore`)
-- **Documentación**: Pendiente anotado — automatizar gestión de pedidos vía WhatsApp + Bloc de notas
+## Cambios Recientes (últimos commits)
 
-### Estado de la config
-- Proveedor de LLM: **Kimi vía OpenRouter** (migrado desde Claude Code)
-- Workflow `briefing-diario`: Activo en cron con agente autónomo
-- Proceso: Agente → PR → revisión manual (ya no push directo)
+| Commit | Cambio |
+|--------|--------|
+| `b1e15f1` | **S04**: MCP `mi-herramienta` ya no requiere `apiKey` — el examen de tools/list funciona sin credenciales |
+| `8450606` | **S04**: MCP convertido en servidor real con 3 tools: `buscar_cliente`, `ultimos_commits`, `estado_bot` |
+| `f03b118` | **S08**: Demo.md incluye link al video de demo (8 min) |
+| `393ff5e` | **S08**: Fix de bug ping/health-check en whatsapp-bot + docs para demo final |
+| `d120b76` | **S06**: Edge function `whatsapp-bot` operativa (Groq + Mem0 + handoff) |
+| `cf73449` | **S05**: Extractor multi-fuente (commits, calendario, gmail) → Mem0 + cron nocturno |
+| `bf20250` | **S04**: Deploy de edge function `mi-herramienta` en Supabase |
 
-### Pendientes detectados
-1. **Automatizar gestión de pedidos WhatsApp + Bloc de notas** — marcado como tarea manual pendiente
-2. Revisar PRs del agente de cron antes de merge
+## Estado de Config
+
+- **CLAUDE.md**: ⚠️ **Corrupto** (contenido binario/garbage) — requiere restauración urgente
+- **prompts/asistente.md**: ⚠️ **Corrupto** (mismo problema de encoding)
+- **MCP tools**: Operativas (`buscar_cliente`, `ultimos_commits`, `estado_bot`)
+- **WhatsApp bot**: Funcional con health-check corregido
+- **Mem0**: Conectado con extractor multi-fuente y cron nocturno
+
+## Pendientes Detectados
+
+1. **🔴 CRÍTICO**: Restaurar `CLAUDE.md` y `prompts/asistente.md` desde backup o regenerar
+2. Verificar que el MCP sin `apiKey` no expone datos sensibles
+3. Confirmar que el cron nocturno de extracción está activo en producción
 
 ---
 
-### 🚨 Reglas permanentes (recordatorio)
-- **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
-- **Ningún mensaje** sale sin su revisión personal
+## ⛔ Reglas Permanentes
+
+> **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan.  
+> **Ningún mensaje** sale sin su revisión previa.
