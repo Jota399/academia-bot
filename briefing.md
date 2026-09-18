@@ -1,22 +1,33 @@
-## 📋 Briefing Diario - 2026-07-26
+# Briefing Diario — Academia-Bot
 
-### Cambios recientes
-- **Agente de cron (S04)**: Ahora usa MCP de GitHub real (list_commits, get_file_contents, create_pull_request) y **abre PR en lugar de push directo**
-- **Fix**: Límite de `max_tokens` ajustado para tier gratuito de OpenRouter
-- **Fix**: El briefing ya no falla si `bot.log` no existe (está en `.gitignore`)
-- **Documentación**: Pendiente anotado — automatizar gestión de pedidos vía WhatsApp + Bloc de notas
+## Cambios Recientes (últimos commits)
 
-### Estado de la config
-- Proveedor de LLM: **Kimi vía OpenRouter** (migrado desde Claude Code)
-- Workflow `briefing-diario`: Activo en cron con agente autónomo
-- Proceso: Agente → PR → revisión manual (ya no push directo)
+| Commit | Cambio |
+|--------|--------|
+| `b1e15f1` | **S04**: MCP `mi-herramienta` ya no requiere `apiKey` — el examen llama `tools/list` sin credenciales |
+| `8450606` | **S04**: MCP convertido en servidor real con 3 tools: `buscar_cliente`, `ultimos_commits`, `estado_bot` |
+| `f03b118` | **S08**: Demo.md ahora incluye link al video de 8 min |
+| `393ff5e` | **S08**: Fix de bug ping/health-check en whatsapp-bot + logs para demo final |
+| `d120b76` | **S06**: Edge function `whatsapp-bot` operativa (Groq + Mem0 + handoff) |
+| `cf73449` | **S05**: Extractor multi-fuente (commits, calendario, gmail) → Mem0 + cron nocturno |
+| `33329fd` | **S05**: 5 queries semánticas de Mem0 documentadas y probadas |
 
-### Pendientes detectados
-1. **Automatizar gestión de pedidos WhatsApp + Bloc de notas** — marcado como tarea manual pendiente
-2. Revisar PRs del agente de cron antes de merge
+## Estado del Bot
 
----
+| Componente | Estado |
+|------------|--------|
+| WhatsApp Bot (Groq + Mem0 + handoff) | ✅ Operativo (`d120b76`) |
+| MCP Server (`mi-herramienta`) | ✅ 3 tools activas, sin auth requerida |
+| Mem0 | ✅ 5 queries semánticas probadas, extractor multi-fuente con cron |
+| Health-check / Ping | ✅ Bug fixeado (`393ff5e`) |
+| Demo | ✅ Video de 8 min listo |
 
-### 🚨 Reglas permanentes (recordatorio)
-- **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
-- **Ningún mensaje** sale sin su revisión personal
+## Pendientes Detectados
+
+- **CLAUDE.md y prompts/asistente.md**: Archivos corruptos (encoding roto) — requieren restauración urgente
+- Sin CLAUDE.md funcional, no hay contexto de negocio ni instrucciones del sistema
+
+## ⚠️ Reglas Permanentes (recordatorio)
+
+1. **Nunca prometer precio, fecha o descuento** sin aprobación explícita de Jonathan
+2. **Ningún mensaje sale sin su revisión** — todo pasa por aprobación manual
