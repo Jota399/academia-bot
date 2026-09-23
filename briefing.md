@@ -1,22 +1,25 @@
-## 📋 Briefing Diario - 2026-07-26
+## 📋 Briefing Diario — academia-bot
 
-### Cambios recientes
-- **Agente de cron (S04)**: Ahora usa MCP de GitHub real (list_commits, get_file_contents, create_pull_request) y **abre PR en lugar de push directo**
-- **Fix**: Límite de `max_tokens` ajustado para tier gratuito de OpenRouter
-- **Fix**: El briefing ya no falla si `bot.log` no existe (está en `.gitignore`)
-- **Documentación**: Pendiente anotado — automatizar gestión de pedidos vía WhatsApp + Bloc de notas
+### Cambios Recientes
+- **MCP real implementado**: `mi-herramienta` ahora es un MCP con 3 tools (`buscar_cliente`, `ultimos_commits`, `estado_bot`)
+- **Eliminada dependencia de apiKey** para el examen MCP (llama `tools/list` sin credenciales)
+- **Edge function whatsapp-bot** operativa (Groq + Mem0 + handoff) — items 1/2/3/6/7 completados
+- **Sistema de memoria**: extractor multi-fuente (commits, calendario, gmail) + cron nocturno + 5 queries semánticas documentadas
+- **Demo final lista**: video de 8 min linkeado, bug de ping/health-check corregido
 
-### Estado de la config
-- Proveedor de LLM: **Kimi vía OpenRouter** (migrado desde Claude Code)
-- Workflow `briefing-diario`: Activo en cron con agente autónomo
-- Proceso: Agente → PR → revisión manual (ya no push directo)
+### Estado del Bot
+| Componente | Estado |
+|------------|--------|
+| MCP tools | ✅ Operativo (sin auth para examen) |
+| WhatsApp edge function | ✅ Desplegada |
+| Mem0 + extracción | ✅ Activo con cron |
+| Demo/health-check | ✅ Estable |
 
-### Pendientes detectados
-1. **Automatizar gestión de pedidos WhatsApp + Bloc de notas** — marcado como tarea manual pendiente
-2. Revisar PRs del agente de cron antes de merge
+### Pendientes Detectados
+- Ninguno crítico visible en commits recientes
 
 ---
 
-### 🚨 Reglas permanentes (recordatorio)
+### ⚠️ Reglas Permanentes
 - **Nunca** prometer precio, fecha o descuento sin aprobación explícita de Jonathan
-- **Ningún mensaje** sale sin su revisión personal
+- **Ningún mensaje** sale sin su revisión previa
